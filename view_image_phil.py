@@ -22,4 +22,7 @@ def view_image_phil(target_dir, target_image):
   plt.imshow(img)
   #plt.axis("off")
 
-  return True
+  bool = False
+  bool = True
+
+  return bool
