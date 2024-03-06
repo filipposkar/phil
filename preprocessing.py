@@ -198,7 +198,6 @@ def main(excel_file: str, columns_to_drop: list) -> None:
         workbook.save(excel_file)
 
         print(f"Saved in new tab 'output' within '{excel_file}'.")
-        return True
     except Exception as main_error:
         # Print and handle any error that occurs
         print(main_error)
