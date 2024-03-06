@@ -54,9 +54,7 @@ def correct_target(filtered_df) -> any:
             "province": "province",
             "punctuation_mark": "punctuation_mark",
             "streetNumber": "streetNumber",
-            "unit": "unit",
-            "settlement": "settlement",
-            "type": "type"
+            "unit": "unit"
         }
 
         filtered_df["target"] = filtered_df["target"].apply(lambda x: replacements.get(extract_base_name(x), x))
