@@ -4,7 +4,7 @@ try:
     import openpyxl as opyxl
     from openpyxl.utils.dataframe import dataframe_to_rows
     import re
-except Exception as import_err:
+except ImportError as import_err:
     print(import_err)
 
 # Set pandas options
@@ -116,7 +116,7 @@ def correct_target(df: pd.DataFrame) -> pd.DataFrame:
         print(error)
 
 
-def main(excel_file: str, columns_to_drop: list) -> None:
+def main(excel_file: str, columns_to_drop: list, output_csv_path: str) -> None:
     """
     Main function to process Excel data, correct values in the "target" column,
     and output the updated data to a new tab in the same Excel file.
@@ -196,8 +196,15 @@ def main(excel_file: str, columns_to_drop: list) -> None:
 
         # Save the .xlsx file
         workbook.save(excel_file)
-
         print(f"Saved in new tab 'output' within '{excel_file}'.")
+
+        # Save to .csv file
+        # filtered_df.to_csv(r"../processed/output.csv", index=False)
+        # print(f"Saved in CSV file 'output.csv' in ../data/processed.")
+        output_csv_path = os.path.join(output_csv_path, "output.csv")
+        filtered_df.to_csv(output_csv_path, index=False)
+
+        print(f"Saved in CSV file 'output.csv' in {output_csv_path}.")
     except Exception as main_error:
         # Print and handle any error that occurs
         print(main_error)
@@ -206,8 +213,9 @@ def main(excel_file: str, columns_to_drop: list) -> None:
 if __name__ == '__main__':
     try:
         kwargs = {
-            "excel_file": "input_output_template.xlsx",  # Set the Excel file with the input data
-            "columns_to_drop": [...],  # Set the columns to be dropped
+            "excel_file": "input_output_template - Copy.xlsx",  # Set the Excel file with the input data
+            "columns_to_drop": [],  # Set the columns to be dropped
+            "output_csv_path": r"..."  # Set the path for where 'output.csv' will be saved
         }
         main(**kwargs)
     except Exception as error:
