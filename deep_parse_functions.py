@@ -1,11 +1,12 @@
 
+import numpy as np
 
 def convert_word_to_ngram(word, ngram):
   """
   converts a word to ngrams
   """
   import numpy as np
-
+  
   word_list = []
 
   word_chars = list(word)
