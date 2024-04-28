@@ -92,7 +92,7 @@ def convert_address_to_model_input(address,
     # create formated address
     formated_address = (line_numbers,
         total_lines,
-        tf.constant(address))
+        tf.constant(formated_address))
 
   return formated_address
 
