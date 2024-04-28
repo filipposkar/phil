@@ -36,8 +36,15 @@ def split_chars(text):
 # Convert address to model input
 def convert_address_to_model_input(address, 
                                    standarize_bool=False, 
-                                   ngram_bool=False, 
+                                   ngram_bool=False,
+                                   line_order_bool=False,
                                    char_bool=False):
+  """
+  input: address string and converts it to model input format for prediction
+  output: convered address
+  parameters: model_name
+  """
+
   """
   accepts as input an address string and converts it to model input format for prediction
   """
@@ -45,9 +52,10 @@ def convert_address_to_model_input(address,
   import unicodedata
 
   if standarize_bool:
-    address = strip_accents_and_lowercase(address)
+    address = strip_accents_and_lowercase(address) 
 
   # models: baseline, conv1d
+  # "model_0", "model_1", "model_100"
   formated_address = address.split()
 
   # models: ngram
@@ -63,6 +71,28 @@ def convert_address_to_model_input(address,
     for element in formated_address:
       formated_address_list.append(split_chars(element))
     formated_address = formated_address_list
+  
+  # models: "model_conv1d_line_order"
+  # "model_300"
+  if line_order_bool:
+    import tensorflow as tf
+    address_length = len(formated_address)
+
+    # create line_numbers one hot
+    line_numbers_indices = tf.range(0, address_length, 1)
+    line_numbers_depth = 10
+    line_numbers = tf.one_hot(line_numbers_indices, line_numbers_depth)
+
+    # create total_lines one hot
+    total_lines_indices = tf.fill([1, address_length], address_length-1)
+    total_lines_depth = 10
+    total_lines = tf.one_hot(total_lines_indices, total_lines_depth)
+    total_lines = tf.squeeze(total_lines)
+
+    # create formated address
+    formated_address = (line_numbers,
+        total_lines,
+        tf.constant(address))
 
   return formated_address
 
