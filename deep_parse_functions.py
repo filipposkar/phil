@@ -1,6 +1,4 @@
-
 import numpy as np
-
 def convert_word_to_ngram(word, ngram):
   """
   converts a word to ngrams
@@ -19,3 +17,9 @@ def convert_word_to_ngram(word, ngram):
   word_list.append(word_chars[word_len-1])
 
   return "".join((x) for x in word_list)
+
+import unicodedata
+def strip_accents_and_lowercase(s):
+   return ''.join(c for c in unicodedata.normalize('NFD', s)
+                  if unicodedata.category(c) != 'Mn').lower()
+
