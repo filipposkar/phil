@@ -40,7 +40,6 @@ def convert_address_to_model_input(address,
                                    char_bool=False):
   """
   accepts as input an address string and converts it to model input format for prediction
-  it is better to replace char_embed_bool to model name (model_1, etc.)
   """
 
   import unicodedata
@@ -53,7 +52,9 @@ def convert_address_to_model_input(address,
 
   # models: ngram
   if ngram_bool:
-    formated_address = convert_word_to_ngram(address, 3)
+    formated_address = []
+    for addr_element in address.split():
+      formated_address.append(convert_word_to_ngram(addr_element,3))
 
   # models: char embed
   if char_bool:
