@@ -52,9 +52,10 @@ def convert_address_to_model_input(address,
 
   # models: ngram
   if ngram_bool:
-    formated_address = []
+    formated_address_list = []
     for addr_element in address.split():
-      formated_address.append(convert_word_to_ngram(addr_element,3))
+      formated_address_list.append(convert_word_to_ngram(addr_element,3))
+    formated_address = formated_address_list
 
   # models: char embed
   if char_bool:
