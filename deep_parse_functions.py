@@ -28,6 +28,11 @@ def strip_accents_and_lowercase(s):
    return ''.join(c for c in unicodedata.normalize('NFD', s)
                   if unicodedata.category(c) != 'Mn').lower()
 
+
+# Make function to split sentences into characters
+def split_chars(text):
+  return(" ".join(list(text)))
+
 # Convert address to model input
 def convert_address_to_model_input(address, 
                                    standarize_bool=False, 
