@@ -25,7 +25,7 @@ def convert_word_to_ngram(word, ngram):
 import unicodedata
 
 def strip_accents_and_lowercase(s):
-   return ''.join(c for c in unicodedata.normalize('NFD', s)
+   return ''.join(c for c in unicodedata.normalize('NFD', str(s))
                   if unicodedata.category(c) != 'Mn').lower()
 
 
