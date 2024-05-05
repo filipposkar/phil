@@ -34,7 +34,7 @@ def split_chars(text):
   return(" ".join(list(text)))
 
 # Convert address to model input
-def convert_address_to_model_input_test(address, 
+def convert_address_to_model_input(address, 
                                    standarize_bool=False, 
                                    ngram_bool=False,
                                    line_order_bool=False,
