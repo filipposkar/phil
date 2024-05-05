@@ -34,10 +34,11 @@ def split_chars(text):
   return(" ".join(list(text)))
 
 # Convert address to model input
-def convert_address_to_model_input(address, 
+def convert_address_to_model_input_test(address, 
                                    standarize_bool=False, 
                                    ngram_bool=False,
                                    line_order_bool=False,
+                                   token_and_ngram_bool=False,
                                    char_bool=False):
   """
   input: address string and converts it to model input format for prediction
@@ -56,26 +57,27 @@ def convert_address_to_model_input(address,
 
   # models: baseline, conv1d
   # "model_0", "model_1", "model_100"
-  formated_address = address.split()
+  formated_address_conv1d = address.split()
+  formated_address = formated_address_conv1d
 
   # models: ngram
   if ngram_bool:
-    formated_address_list = []
+    formated_address_list_ngram = []
     for addr_element in address.split():
-      formated_address_list.append(convert_word_to_ngram(addr_element,3))
-    formated_address = formated_address_list
+      formated_address_list_ngram.append(convert_word_to_ngram(addr_element,3))
+    formated_address = formated_address_list_ngram
 
   # models: char embed
   if char_bool:
-    formated_address_list = []
+    formated_address_list_char = []
     for element in formated_address:
-      formated_address_list.append(split_chars(element))
-    formated_address = formated_address_list
+      formated_address_list_char.append(split_chars(element))
+    formated_address = formated_address_list_char
   
   # models: "model_conv1d_line_order"
   # "model_300"
   if line_order_bool:
-    import tensorflow as tf
+    # import tensorflow as tf
     address_length = len(formated_address)
 
     # create line_numbers one hot
@@ -93,6 +95,9 @@ def convert_address_to_model_input(address,
     formated_address = (line_numbers,
         total_lines,
         tf.constant(formated_address))
-
+    
+  if token_and_ngram_bool:
+    # import tensorflow as tf
+    formated_address = (tf.constant(formated_address_conv1d), tf.constant(formated_address_list_ngram))
+    
   return formated_address
-
