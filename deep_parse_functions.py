@@ -77,7 +77,7 @@ def convert_address_to_model_input(address,
   # models: "model_conv1d_line_order"
   # "model_300"
   if line_order_bool:
-    # import tensorflow as tf
+    import tensorflow as tf
     address_length = len(formated_address)
 
     # create line_numbers one hot
@@ -97,7 +97,7 @@ def convert_address_to_model_input(address,
         tf.constant(formated_address))
     
   if token_and_ngram_bool:
-    # import tensorflow as tf
+    import tensorflow as tf
     formated_address = (tf.constant(formated_address_conv1d), tf.constant(formated_address_list_ngram))
     
   return formated_address
