@@ -101,3 +101,32 @@ def convert_address_to_model_input(address,
     formated_address = (tf.constant(formated_address_conv1d), tf.constant(formated_address_list_ngram))
     
   return formated_address
+
+def terra_geocode(addr):
+  import os
+  import requests
+  import json
+
+  url = "http://mapsrv5.terra.gr/avl/webservice.asmx/getAddressJSON"
+
+  data={}
+  # data['code'] = 'Age78em3xSOpTGLSV+Ukks5Jk+q87IKsYX6WLpKhWdfiN6cldyr2y5WS66HTwtlam5mmXA7RdFCBFJGyGgXSV4WncMeoekitmyyDeRinO10P2KK0TEWJOJAZfVgPZ69t/igyp7s0un2EA1e1TlrpfPCo8JBJbliuuqUmnHZIqDWW6HkRpe6mJhUbiPBhQLqSpRvKgEmBa1WOjJ+/uZdgNw=='
+  # data['machineID'] = 'XLS-4F1C8ECF-9EA2-45DA-A349-B6E06AEE3A2F'
+  data['countryCode'] = '30'
+  data['input'] = address_text
+  data['SRID'] = '2100'
+
+  query_string = ''
+  for k, v in data.items():
+      query_string += k + '=' + v + '&'
+
+  url = url + '?'+ query_string[:-1]
+
+  session = requests.Session()
+  session.stream = True
+  resp = session.get(url=url)
+
+  address_list = json.loads(resp.text[76:-9])
+
+  return address_list
+
