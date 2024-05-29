@@ -113,7 +113,7 @@ def terra_geocode(addr):
   # data['code'] = 'Age78em3xSOpTGLSV+Ukks5Jk+q87IKsYX6WLpKhWdfiN6cldyr2y5WS66HTwtlam5mmXA7RdFCBFJGyGgXSV4WncMeoekitmyyDeRinO10P2KK0TEWJOJAZfVgPZ69t/igyp7s0un2EA1e1TlrpfPCo8JBJbliuuqUmnHZIqDWW6HkRpe6mJhUbiPBhQLqSpRvKgEmBa1WOjJ+/uZdgNw=='
   # data['machineID'] = 'XLS-4F1C8ECF-9EA2-45DA-A349-B6E06AEE3A2F'
   data['countryCode'] = '30'
-  data['input'] = address_text
+  data['input'] = addr
   data['SRID'] = '2100'
 
   query_string = ''
