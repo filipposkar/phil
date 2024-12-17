@@ -9,6 +9,11 @@ Original file is located at
 
 # deep parse functions
 
+
+# Make function to split sentences into characters
+def split_chars(text):
+  return(" ".join(list(text)))
+
 # Strip accents and lowercase
 import unicodedata
 
