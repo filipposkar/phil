@@ -200,3 +200,25 @@ def display_pred_probs_list(class_names,
       pred_dict[pred_field+'_score'] = str(pred_dict.get(pred_field+'_score')) + ' ' + str(pred_prob)
 
   return pred_dict
+
+def reorder_and_join(streetNames, streetNumbers, reordered_address):
+
+  # streetNames = ["Μελισίων", "Μουργκάνας", "Μαρούσι"]
+  # streetNumbers = ["&", "18", "1"]
+  
+  import re
+  try:
+    combined_list = streetNames + streetNumbers
+
+    sorted_elements = []
+
+    for word in re.split(r"(\s+)", reorder_address):
+      word = word.strip()
+      if word in combined_list:
+        sorted_elements.append(word)
+        combined_list.remove(word)
+
+    return " ".join(sorted_elements)
+  except Exception as error:
+    print(error)
+
