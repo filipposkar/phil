@@ -212,7 +212,7 @@ def reorder_and_join(streetNames, streetNumbers, reordered_address):
 
     sorted_elements = []
 
-    for word in re.split(r"(\s+)", reorder_address):
+    for word in re.split(r"(\s+)", reordered_address):
       word = word.strip()
       if word in combined_list:
         sorted_elements.append(word)
