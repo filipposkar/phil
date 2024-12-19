@@ -222,3 +222,38 @@ def reorder_and_join(streetNames, streetNumbers, reordered_address):
   except Exception as error:
     print(error)
 
+def terra_geocoding_service(addr):
+
+  # a splitted text ['ΕΝΘΟΜΑΡΤΥΡΩΝ', '36,', 'Πάτρα', '26333']
+  import os
+  import requests
+  import json
+
+  data={}
+  url = "http://mapsrv9.terra.gr/avl/webservice.asmx/getAddressJSON"
+
+
+  addr = addr.replace('&', '%26')
+
+  data['countryCode'] = '30'
+  data['input'] = addr
+  data['SRID'] = '2100'
+
+  query_string = ''
+  for k, v in data.items():
+      query_string += k + '=' + v + '&'
+
+  url = url + '?'+ query_string[:-1]
+  # print(url)
+
+  session = requests.Session()
+  session.stream = True
+  resp = session.get(url=url)
+
+  address_list = json.loads(resp.text[76:-9])
+
+  return address_list
+
+
+
+
