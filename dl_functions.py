@@ -224,7 +224,7 @@ def reorder_and_join(streetNames, streetNumbers, reordered_address):
 
 def terra_geocoding_service(addr):
 
-  # a splitted text ['ΕΝΘΟΜΑΡΤΥΡΩΝ', '36,', 'Πάτρα', '26333']
+  # input : 'Καραϊσκάκη 32, 26221, Πάτρα'
   import os
   import requests
   import json
