@@ -224,7 +224,23 @@ def reorder_and_join(streetNames, streetNumbers, reordered_address):
 
 def terra_geocoding_service(addr):
 
-  # input : 'Καραϊσκάκη 32, 26221, Πάτρα'
+  """
+  input : 'Καραϊσκάκη 32, 26221, Πάτρα'
+  
+  output :
+  [{'addType': 1,
+  'addId': 263219,
+  'addZip': '26221',
+  'addStreet': 'Καραϊσκάκη Γεωργίου ',
+  'addMunicip': 'Πάτρα',
+  'addNumb': 32,
+  'addPoint': {'x': 302124.0, 'y': 4235460.0},
+  'addPointWGS84': None,
+  'addFormated': 'Καραϊσκάκη Γεωργίου  32 &lt;b&gt;Πάτρα&lt;/b&gt; 26221'}]
+  """
+  
+
+  
   import os
   import requests
   import json
