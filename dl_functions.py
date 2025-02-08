@@ -151,11 +151,11 @@ def display_pred_probs_text(text, pred_probs, class_names):
   pred_text = class_names[pred_index]
   pred_probability = pred_probs[0][pred_index]*100
 
-  print(f"{text} ===> {pred_text} ({pred_probability:.1f}%)")
+  # print(f"{text} ===> {pred_text} ({pred_probability:.1f}%)")
 
   pred_text = class_names[pred_index]
 
-  return text, pred_text
+  return text, pred_text, pred_probability
 
 def display_pred_probs_list(class_names,
                          address_split,
