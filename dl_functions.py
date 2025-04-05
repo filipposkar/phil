@@ -68,7 +68,7 @@ def convert_address_to_model_input_2(address, model_name):
   if model_name == "model_100" or model_name == "model_1": # conv1d (OK)
     converted_address = tf.constant(address_split)
 
-  if model_name == "model_200": # conv1d_positional_embeddings (OK)
+  if model_name == "model_200" or model_name == "model_2": # conv1d_positional_embeddings (OK)
 
     address_length = len(address_split)
 
