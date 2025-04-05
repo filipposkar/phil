@@ -126,7 +126,7 @@ def convert_address_to_model_input_2(address, model_name):
       total_lines = tf.one_hot(total_lines_indices, total_lines_depth)
       total_lines =tf.reshape(total_lines, [1, total_lines_depth])
 
-	  # create formated address
+    # create formated address
     converted_address = (line_numbers,
 		total_lines,
 		tf.constant(address_split),
