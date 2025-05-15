@@ -70,6 +70,9 @@ def convert_address_to_model_input_2(address, model_name):
 
   if model_name == "model_1030" or model_name == "model_13": # conv1d (OK)
     converted_address = [tf.constant(address_ngram), tf.constant(address_split)]
+
+  if model_name == "model_700" or model_name == "model_7": # char n-gram (OK)
+    [tf.constant(address_char), tf.constant(address_ngram)]
 	  
   if model_name == "model_200" or model_name == "model_2": # conv1d_positional_embeddings (OK)
 
