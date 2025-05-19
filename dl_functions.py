@@ -65,7 +65,10 @@ def convert_address_to_model_input_2(address, model_name):
   if model_name == "model_0": # baseline model (OK)
     converted_address = address_split
 
-  if model_name == "model_100" or model_name == "model_1": # conv1d (OK)
+  if model_name == "model_100" or model_name == "model_1": # token (OK)
+    converted_address = tf.constant(address_split)
+
+  if model_name == "model_100a" or model_name == "model_1a": # token blstm (OK)
     converted_address = tf.constant(address_split)
 
   if model_name == "model_1030" or model_name == "model_13": # conv1d (OK)
